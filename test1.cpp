@@ -36,6 +36,8 @@ int main()
 
   utf8_decode("§a\xc0\x81sdf");
 
+  utf8_decode("§a\xfd\x80\x80\x80\x80\x80sdf");  // overlong 5 byte sequence -> overflow
+
   utf8_decode("§a\xff\xfesdf");
 
   utf8_decode("a\xed\xa0\x80sdf");  // unpaired lead

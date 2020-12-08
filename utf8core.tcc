@@ -31,6 +31,7 @@ static constexpr const struct alignas(2048) Tables_s {
     ERROR = START | ERROR_F,
     DONE  = START | DONE_F,
     SDONE =  DONE | SURROGATE_F,
+    OVERF =  DONE | ERROR_F,
 
     OX__2 =  X__2 | OVERLONG_F,
     OX__3 =  X__3 | OVERLONG_F
@@ -84,8 +85,8 @@ static constexpr const struct alignas(2048) Tables_s {
   /*          START   X__2   X__3   X__4   SURR    OL1  OL2_3  OL3_4        SUR_3  OF1_4  */
   /*  ASC  */  DONE, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, 0, 0, ERROR, ERROR, // ASC
   /*  X0F  */ ERROR,  DONE,  X__2,  X__3, SDONE,  DONE, OX__2, OX__3, 0, 0,  X__2,  X__3, // X0F
-  /*  Y0F  */ ERROR,  DONE,  X__2,  X__3, SDONE,  DONE, OX__2,  X__3, 0, 0,  X__2, ERROR, // Y0F
-  /*  A0_  */ ERROR,  DONE,  X__2,  X__3, SDONE,  DONE,  X__2,  X__3, 0, 0,  SURR, ERROR, // A0_
+  /*  Y0F  */ ERROR,  DONE,  X__2,  X__3, SDONE,  DONE, OX__2,  X__3, 0, 0,  X__2, OVERF, // Y0F
+  /*  A0_  */ ERROR,  DONE,  X__2,  X__3, SDONE,  DONE,  X__2,  X__3, 0, 0,  SURR, OVERF, // A0_
   /*  C00  */   OL1, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, 0, 0, ERROR, ERROR, // C00
   /*  C11  */ OX__2, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, 0, 0, ERROR, ERROR, // C11
   /*  C2_  */  X__2, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, 0, 0, ERROR, ERROR, // C2_
@@ -95,7 +96,7 @@ static constexpr const struct alignas(2048) Tables_s {
   /*  F00  */ OL3_4, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, 0, 0, ERROR, ERROR, // F00
   /*  F13  */  X__4, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, 0, 0, ERROR, ERROR, // F13
   /*  F44  */ OF1_4, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, 0, 0, ERROR, ERROR, // F44
-  /*  F5F  */ ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, 0, 0, ERROR, ERROR  // F5F
+  /*  F5F  */ OVERF, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, 0, 0, ERROR, ERROR  // F5F
   };
 } Tables{};
 

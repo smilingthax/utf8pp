@@ -113,8 +113,9 @@ static inline int next(FwdIterator &begin, const FwdIterator &end)
             return -3;  // surrogate not allowed
           } else if (state & Tables.OVERLONG_F) {
             return -4;  // overlong not allowed
+          } else if (state == Tables.OVERF && ret < 0x7e) { // Note: FE ?? and FF ?? are not 5/6 byte sequences, but not defined at all / error
+            return -5;  // overflow
           } // else: invalid encoding (-2)
-          // TODO? return -5 when overflow?
         }
 
         return -2; // invalid encoding

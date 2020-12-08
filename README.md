@@ -7,7 +7,8 @@ Inspired by:
 This implementation:
  - Uses a transposed transition matrix, obviating the need for tricky character class ordering or an extra big/small table.
  - Supports resyncing to next UTF-8 boundary, which allows easy generation of U+FFFD Replacement Character.
- - Optional exact error cause reporting (overlong not allowed, surrogate not allowed, unpaired surrogate, ...).
+ - Optional exact error cause reporting
+   (eof(-1), invalid(-2), surrogate not allowed(-3), overlong not allowed(-4), overflow(-5), unpaired surrogate(-6)) instead of just -1 / -2.
  - When End-of-String is reached, a distinguished error code is returned;
    an implementor can then choose to restart parsing from the original position when more data becomes available.
  - Can be configured for different use cases with a compile-type Decode Strategy: no penalty for unused features.
